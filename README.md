@@ -1,9 +1,10 @@
 # 0x16. C - Simple Shell
 
-Learning Objectives
+## Learning Objectives
 
-At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
-General
+    At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+### General
 
     Who designed and implemented the original Unix operating system
     Who wrote the first version of the UNIX shell
@@ -20,15 +21,16 @@ General
     How to suspend the execution of a process until one of its children terminates
     What is EOF / “end-of-file”?
 
-Copyright - Plagiarism
+### Copyright - Plagiarism
 
     You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.
     You will not be able to meet the objectives of this or any following project by copying and pasting someone else’s work.
     You are not allowed to publish any content of this project.
     Any form of plagiarism is strictly forbidden and will result in removal from the program.
 
-Requirements
-General
+## Requirements
+
+### General
 
     Allowed editors: vi, vim, emacs
     All your files will be compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
@@ -41,4 +43,3 @@ General
     Use system calls only when you need to (why?)
     Write a README with the description of your project
     You should have an AUTHORS file at the root of your repository, listing all individuals having contributed content to the repository. Format, see Docker
-

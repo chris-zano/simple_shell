@@ -15,7 +15,7 @@ char **split_line(char *line)
 
 	if (!tokens)
 	{
-		fprintf(stderr, "%sdash: Allocation error%s\n", RED, RESET);
+		perror("(dash):Error");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
@@ -29,7 +29,7 @@ char **split_line(char *line)
 			tokens = realloc(tokens, buffsize * sizeof(char *));
 			if (!tokens)
 			{
-				fprintf(stderr, "%sdash: Allocation error%s\n", RED, RESET);
+				perror("(dash):Error");
 				exit(EXIT_FAILURE);
 			}
 		}

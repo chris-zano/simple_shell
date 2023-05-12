@@ -29,4 +29,5 @@ int dash_exit(char **args);
 void loop(void);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int _strcmp(char *str1, char *str2);
+char *_strcat(char *dest, char *src);
 #endif /* SHELL_H */

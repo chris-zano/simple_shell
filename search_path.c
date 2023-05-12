@@ -35,11 +35,11 @@ char *search_path(char **filename)
 
 		while ((entry = readdir(dp)) != NULL)
 		{
-			if (_strcmp(entry->d_name, filename[0]) == 0)
+			if (strcmp(entry->d_name, filename[0]) == 0)
 			{
-				dir = strcat(dir, "/");
+				dir = _strcat(dir, "/");
 				closedir(dp);
-				return (strcat(dir, filename[0]));
+				return (_strcat(dir, filename[0]));
 			}
 		}
 		closedir(dp);

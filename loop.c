@@ -16,12 +16,11 @@ void loop(void)
 
 	do {
 		write(0,"~$ ",3);
-		/* line = read_line(); */
 		n = _getline(&buffer, &size, stdin);
 		if (n == -1)
 			exit(EXIT_FAILURE);
 		args = split_line(buffer);
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			dash_exit(args);
 			return;

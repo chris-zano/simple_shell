@@ -15,12 +15,6 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 	int status;
 	int i;
 
-	for (i = 0; args[i] != NULL; i++)
-		printf("arg is %s at \n", args[i]);
-	if (strcmp(args[0], "exit") == 0)
-	{
-		return (dash_exit(args));
-	}
 	cpid = fork();
 	if (cpid == 0)
 	{

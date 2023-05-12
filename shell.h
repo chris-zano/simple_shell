@@ -26,6 +26,6 @@ char **split_line(char *);
 char *search_path(char **filename);
 int dash_execute(char *path, char **args);
 int dash_exit(char **args);
-void loop();
+void loop(void);
 
 #endif /* SHELL_H */

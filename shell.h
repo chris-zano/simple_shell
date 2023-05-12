@@ -27,5 +27,5 @@ char *search_path(char **filename);
 int dash_execute(char *path, char **args);
 int dash_exit(char **args);
 void loop(void);
-
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 #endif /* SHELL_H */

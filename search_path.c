@@ -19,7 +19,7 @@ char *search_path(char **filename)
 
 	if (path == NULL)
 	{
-		fprintf(stderr, "PATH environment variable not set\n");
+		perror("dash:Error");
 		return (NULL);
 	}
 
@@ -29,13 +29,13 @@ char *search_path(char **filename)
 		dp = opendir(dir);
 		if (dp == NULL)
 		{
-			fprintf(stderr, "cannot open directory: %s\n", dir);
+			perror("dash:Error");
 			continue;
 		}
 
 		while ((entry = readdir(dp)) != NULL)
 		{
-			if (strcmp(entry->d_name, filename[0]) == 0)
+			if (_strcmp(entry->d_name, filename[0]) == 0)
 			{
 				dir = _strcat(dir, "/");
 				closedir(dp);
@@ -45,6 +45,6 @@ char *search_path(char **filename)
 		closedir(dp);
 		dir = strtok(NULL, ":");
 	}
-	fprintf(stderr, "%s not found in PATH\n", filename[0]);
+	perror("dash:Error");
 	return (NULL);
 }

@@ -12,7 +12,7 @@
 char *search_path(char **filename)
 {
 	char *path = getenv("PATH");
-	char *path_copy = strdup(path);
+	char *path_copy = _strdup(path);
 	char *dir;
 	DIR *dp;
 	struct dirent *entry;

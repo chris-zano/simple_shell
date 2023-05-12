@@ -15,7 +15,7 @@ char *read_line()
 
 	if (!buffer)
 	{
-		fprintf(stderr, "%sdash: Allocation errors%s\n", RED, RESET);
+		perror("(dash):Error");
 		exit(EXIT_FAILURE);
 	}
 	while (1)
@@ -38,7 +38,7 @@ char *read_line()
 			buffer = realloc(buffer, sizeof(char) * buffsize);
 			if (!buffer)
 			{
-				fprintf(stderr, "%sdash: Allocation errors%s\n", RED, RESET);
+				perror("(dash):Error");
 				exit(EXIT_FAILURE);
 			}
 		}

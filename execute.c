@@ -9,12 +9,13 @@
  * Return: 0 Always.
  */
 
-int dash_execute(char *path, char **args)
+int dash_execute(char *path, __attribute__((unused))char **args)
 {
 	pid_t cpid;
 	int status;
+	int i;
 
-	for (int i = 0; args[i] != NULL; i++)
+	for (i = 0; args[i] != NULL; i++)
 		printf("arg is %s at \n", args[i]);
 	if (strcmp(args[0], "exit") == 0)
 	{

@@ -7,7 +7,6 @@
 
 void loop(void)
 {
-	char *line;
 	char *buffer = NULL;
 	size_t size = 0;
 	ssize_t n;
@@ -16,9 +15,11 @@ void loop(void)
 	int status = 1;
 
 	do {
-		printf("~$ ");
+		write(0,"~$ ",3);
 		/* line = read_line(); */
 		n = _getline(&buffer, &size, stdin);
+		if (n == -1)
+			exit(EXIT_FAILURE);
 		args = split_line(buffer);
 		if (strcmp(args[0], "exit") == 0)
 		{
@@ -30,7 +31,6 @@ void loop(void)
 			command = search_path(args);
 			dash_execute(command, args);
 		}
-		free(line);
 		free(args);
 	} while (status);
 }

@@ -21,7 +21,7 @@ void loop(void)
 		if (n == -1)
 			exit(EXIT_FAILURE);
 		args = split_line(buffer);
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			dash_exit(args);
 			return;

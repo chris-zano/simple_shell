@@ -35,7 +35,7 @@ char *search_path(char **filename)
 
 		while ((entry = readdir(dp)) != NULL)
 		{
-			if (strcmp(entry->d_name, filename[0]) == 0)
+			if (_strcmp(entry->d_name, filename[0]) == 0)
 			{
 				dir = strcat(dir, "/");
 				closedir(dp);

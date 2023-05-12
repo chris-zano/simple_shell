@@ -13,7 +13,6 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 {
 	pid_t cpid;
 	int status;
-	int i;
 
 	cpid = fork();
 	if (cpid == 0)

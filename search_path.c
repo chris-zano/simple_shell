@@ -1,17 +1,18 @@
-#include "main.h"
+#include "shell.h"
 
 
-char *search_path(char *filename)
+char *search_path(char **filename)
 {
 	char *path = getenv("PATH");
 	char *path_copy = strdup(path);
+	char *dir;
 	if (path == NULL)
 	{
 		fprintf(stderr, "PATH environment variable not set\n");
 		return (NULL);
 	}
 
-	char *dir = strtok(path_copy, ":");
+	dir = strtok(path_copy, ":");
 	while (dir != NULL)
 	{
 		DIR *dp = opendir(dir);
@@ -24,18 +25,18 @@ char *search_path(char *filename)
 		struct dirent *entry;
 		while ((entry = readdir(dp)) != NULL)
 		{
-			if (strcmp(entry->d_name, filename) == 0)
+			if (strcmp(entry->d_name, filename[0]) == 0)
 			{
-				printf("%s/%s\n", dir, filename);
+				printf("%s/%s\n", dir, filename[0]);
 				dir = strcat(dir, "/");
 				closedir(dp);
-				return (strcat(dir, filename));
+				return (strcat(dir, filename[0]));
 			}
 		}
 		closedir(dp);
 		dir = strtok(NULL, ":");
 	}
 
-	fprintf(stderr, "%s not found in PATH\n", filename);
+	fprintf(stderr, "%s not found in PATH\n", filename[0]);
 	return (NULL);
 }

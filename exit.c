@@ -7,7 +7,8 @@
  *
  * Return: 0 Always.
  */
-int dash_exit(char **args)
+
+int dash_exit(__attribute__((unused))char **args)
 {
 	return (0);
 }

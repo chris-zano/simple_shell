@@ -10,5 +10,13 @@
 
 int dash_exit(__attribute__((unused))char **args)
 {
-	return (0);
+	int len = 0;
+
+	while (args[len] != NULL)
+		len++;
+
+	if (len > 1)
+		_exit(atoi(args[1]));
+	else
+		_exit(EXIT_SUCCESS);
 }

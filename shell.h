@@ -49,7 +49,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
-char **_getenv(char *str);
+char *_getenv(char *str);
 int _strncmp(const char *str1, const char *str2, size_t n);
 int _strlen(char *str);
 int dash_builtin(char *command);

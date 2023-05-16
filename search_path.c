@@ -15,9 +15,11 @@
 
 char *search_path(char **filename)
 {
-	char *path = getenv("PATH");
+	char *path = _getenv("PATH");
 	char *path_copy = _strdup(path);
-	char *dir;
+	printf("this is path -> %s\n", path);
+	printf("this is copy => %s\n", path_copy);
+	/*char *dir;
 	DIR *dp;
 	struct dirent *entry;
 
@@ -48,6 +50,6 @@ char *search_path(char **filename)
 		}
 		closedir(dp);
 		dir = strtok(NULL, ":");
-	}
+	}*/
 	return (NULL);
 }

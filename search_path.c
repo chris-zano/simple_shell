@@ -15,13 +15,13 @@
 
 char *search_path(char **filename)
 {
-	char *path = _getenv("PATH");
-	char *path_copy = _strdup(path);
+	char **path = _getenv("PATH");
+	char *path_copy = _strdup(*path);
 	char *dir;
 	DIR *dp;
 	struct dirent *entry;
 
-	if (path == NULL)
+	if (*path == NULL)
 	{
 		perror("dash:Error");
 		return (NULL);

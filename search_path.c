@@ -2,16 +2,20 @@
 
 /**
  * search_path - searches the PATH for a file
+ *
  * Description: search the PATH env for a filename
- * it then concatenates the path to the filename and returna a pointer to the string
+ * it then concatenates the path to the filename
+ * and returna a pointer to the string
  * the string is then passed as an argument to the execve function
+ *
+ * @filename: the name of the file to search for in the PATH
  *
  * Return: a pointer to a null terminated string containing the path of a file
  */
 
 char *search_path(char **filename)
 {
-	char *path = getenv("PATH");
+	char *path = _getenv("PATH");
 	char *path_copy = _strdup(path);
 	char *dir;
 	DIR *dp;

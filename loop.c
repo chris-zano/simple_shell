@@ -15,7 +15,7 @@ void loop(void)
 	int status = 1;
 
 	do {
-		write(0,"~$ ",3);
+		write(0, "~$ ", 3);
 		n = _getline(&buffer, &size, stdin);
 		if (n == -1)
 			exit(EXIT_FAILURE);

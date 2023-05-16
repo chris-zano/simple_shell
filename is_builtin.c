@@ -18,15 +18,15 @@
 int is_builtin(char *command, char **builtin_args)
 {
 	int i = 0;
-	int len = sizeof(builtin_args) / sizeof(builtin_args[0]);
 
-	for (i = 0; i < len; i++)
+	while (builtin_args[i] != NULL)
 	{
 		if (_strcmp(command, builtin_args[i]) == 0)
 		{
 			dash_builtin(command);
 			return (1);
 		}
+		i++;
 	}
 	return (0);
 }

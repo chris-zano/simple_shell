@@ -20,6 +20,24 @@
 
 extern char **environ;
 
+/* struct declarations go here */
+
+typedef int (*builtinFunc)();
+
+/**
+ * struct built_in - struct definition for builtin commands
+ *
+ * @name: name of the builtin
+ *
+ * @func: fuction pointer to execute the builtin command
+ */
+
+typedef struct built_in
+{
+	char *name;
+	builtinFunc func;
+} builtin_t;
+
 /* function declarations go here */
 char *read_line();
 char **split_line(char *);
@@ -31,8 +49,12 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
-char **_getenv(const char *str);
+char **_getenv(char *str);
 int _strncmp(const char *str1, const char *str2, size_t n);
-
+int _strlen(char *str);
+int dash_builtin(char *command);
+int is_builtin(char *command, char **builtin_args);
+int dash_setenv(void);
+int dash_unsetenv(void);
 
 #endif /* SHELL_H */

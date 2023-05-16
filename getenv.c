@@ -8,7 +8,7 @@
  * Return: pointer to environment variable, else NULL
  */
 
-char **_getenv(const char *str)
+char **_getenv(char *str)
 {
 	int i = 0;
 	int len = _strlen(str);

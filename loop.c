@@ -13,6 +13,7 @@ void loop(void)
 	char **args;
 	char *command;
 	int status = 1;
+	char *builtin_args[] = {"exit", "setenv", "unsetenv", NULL};
 
 	do {
 		write(0, "~$ ", 3);
@@ -20,12 +21,8 @@ void loop(void)
 		if (n == -1)
 			exit(EXIT_FAILURE);
 		args = split_line(buffer);
-		if (_strcmp(args[0], "exit") == 0)
-		{
-			dash_exit(args);
-			return;
-		}
-		else
+
+		if (is_builtin(args[0], builtin_args) == 0)
 		{
 			command = search_path(args);
 			dash_execute(command, args);

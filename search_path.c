@@ -15,7 +15,7 @@
 
 char *search_path(char **filename)
 {
-	char *path = _getenv("PATH");
+	char *path = getenv("PATH");
 	char *path_copy = _strdup(path);
 	char *dir;
 	DIR *dp;
@@ -23,7 +23,7 @@ char *search_path(char **filename)
 
 	if (path == NULL)
 	{
-		perror("dash:Error");
+		perror("dash:Error path is null");
 		return (NULL);
 	}
 
@@ -33,7 +33,7 @@ char *search_path(char **filename)
 		dp = opendir(dir);
 		if (dp == NULL)
 		{
-			perror("dash:Error");
+			perror("dash:Error failed to open dir");
 			continue;
 		}
 
@@ -49,6 +49,5 @@ char *search_path(char **filename)
 		closedir(dp);
 		dir = strtok(NULL, ":");
 	}
-	perror("dash:Error");
 	return (NULL);
 }

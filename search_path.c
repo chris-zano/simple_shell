@@ -50,6 +50,7 @@ char *search_path(char **filename)
 	path_copy = _strdup(path);
 	dir = strtok(path_copy, ":");
 
+	dir = _strtok(path_copy, ":");
 	while (dir != NULL)
 	{
 		dp = opendir(dir);
@@ -69,7 +70,7 @@ char *search_path(char **filename)
 			}
 		}
 		closedir(dp);
-		dir = strtok(NULL, ":");
+		dir = _strtok(NULL, ":");
 	}
 	return (NULL);
 }

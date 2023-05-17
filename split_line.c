@@ -18,7 +18,7 @@ char **split_line(char *line)
 		perror("(dash):Error");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(line, TOK_DELIM);
+	token = _strtok(line, TOK_DELIM);
 	while (token != NULL)
 	{
 		tokens[position] = token;
@@ -33,7 +33,7 @@ char **split_line(char *line)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = strtok(NULL, TOK_DELIM);
+		token = _strtok(NULL, TOK_DELIM);
 	}
 	tokens[position] = NULL;
 

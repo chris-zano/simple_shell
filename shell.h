@@ -22,7 +22,7 @@ extern char **environ;
 
 /* struct declarations go here */
 
-typedef int (*builtinFunc)();
+typedef int (*builtinFunc)(char **args);
 
 /**
  * struct built_in - struct definition for builtin commands
@@ -50,13 +50,15 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
-char **_getenv(char *str);
+char *_getenv(char *str);
 int _strncmp(const char *str1, const char *str2, size_t n);
 int _strlen(char *str);
-int dash_builtin(char *command);
-int is_builtin(char *command, char **builtin_args);
-int dash_setenv(void);
-int dash_unsetenv(void);
+int dash_builtin(char *command, char **args);
+int is_builtin(char *command, char **args, char **builtin_args);
+int dash_setenv(char **args);
+int dash_unsetenv(char **args);
+char *remove_prefix(char *path, char *prefix);
+
 void *_memchr(void const *s, int c_in, size_t n);
 size_t _strspn(const char *str1, const char *str2);
 char *_strpbrk(const char *s, const char *accept);

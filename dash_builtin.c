@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int dash_builtin(char *command)
+int dash_builtin(char *command, char **args)
 {
 	int i = 0;
 	int len = 0;
@@ -19,7 +19,7 @@ int dash_builtin(char *command)
 		if (_strcmp(command, builtins[i].name) == 0)
 		{
 			func = builtins[i].func;
-			func();
+			func(args);
 
 			return (0);
 		}

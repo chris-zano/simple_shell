@@ -1,6 +1,24 @@
 #include "shell.h"
 
 /**
+ * remove_prefix - removes prefix from the path
+ *
+ * @path: the PATH from environment
+ * @prefix: the prefix to be removed
+ *
+ * Return: new path without prefix, else NULL
+ */
+
+char *remove_prefix(char *path, char *prefix)
+{
+	size_t len = _strlen(prefix);
+
+	if (_strncmp(path, prefix, len) == 0)
+		return (_strdup(path + len));
+	return (NULL);
+}
+
+/**
  * search_path - searches the PATH for a file
  *
  * Description: search the PATH env for a filename
@@ -15,8 +33,9 @@
 
 char *search_path(char **filename)
 {
-	char *path = getenv("PATH");
-	char *path_copy = _strdup(path);
+	char *prefix = "PATH=";
+	char *path = _getenv("PATH");
+	char *path_copy;
 	char *dir;
 	DIR *dp;
 	struct dirent *entry;
@@ -26,6 +45,10 @@ char *search_path(char **filename)
 		perror("dash:Error path is null");
 		return (NULL);
 	}
+
+	path = remove_prefix(path, prefix);
+	path_copy = _strdup(path);
+	dir = strtok(path_copy, ":");
 
 	dir = _strtok(path_copy, ":");
 	while (dir != NULL)

@@ -48,9 +48,8 @@ char *search_path(char **filename)
 
 	path = remove_prefix(path, prefix);
 	path_copy = _strdup(path);
-	dir = strtok(path_copy, ":");
-
 	dir = _strtok(path_copy, ":");
+
 	while (dir != NULL)
 	{
 		dp = opendir(dir);

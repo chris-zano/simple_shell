@@ -22,7 +22,7 @@ void loop(void)
 			exit(EXIT_FAILURE);
 		args = split_line(buffer);
 
-		if (is_builtin(args[0], builtin_args) == 0)
+		if (is_builtin(args[0], args, builtin_args) == 0)
 		{
 			command = search_path(args);
 			dash_execute(command, args);

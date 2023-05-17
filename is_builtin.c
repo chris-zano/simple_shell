@@ -15,7 +15,7 @@
  * Return: 1 if match, 0 otherwise
  */
 
-int is_builtin(char *command, char **builtin_args)
+int is_builtin(char *command, char **args, char **builtin_args)
 {
 	int i = 0;
 
@@ -23,7 +23,7 @@ int is_builtin(char *command, char **builtin_args)
 	{
 		if (_strcmp(command, builtin_args[i]) == 0)
 		{
-			dash_builtin(command);
+			dash_builtin(command, args);
 			return (1);
 		}
 		i++;

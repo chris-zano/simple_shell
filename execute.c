@@ -19,13 +19,15 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 	{
 		if (execve(path, args, environ) == -1)
 		{
-			perror("dash:Error");
+			errmsg = "Failed to execute file\n"
+			write(2, errmsg, _strlen(errmsg));
 			exit(EXIT_FAILURE);
 		}
 	}
 	else if (cpid < 0)
 	{
-		perror("dash:Error");
+		errmsg = "Failed to fork child process";
+		write(2, errmsg, _strlen(errmsg));
 	}
 	else
 	{

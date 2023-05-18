@@ -19,7 +19,6 @@
 #define RESET "\e[0m"
 
 extern char **environ;
-extern char *errmsg;
 /* struct declarations go here */
 
 typedef int (*builtinFunc)(char **args);

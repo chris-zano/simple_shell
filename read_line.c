@@ -15,8 +15,7 @@ char *read_line()
 
 	if (!buffer)
 	{
-		errmsg = "(Segfault) core section dumped";
-		write(2, errmsg, _strlen(errmsg));
+		perror("dash:Error");
 		exit(EXIT_FAILURE);
 	}
 	while (1)
@@ -39,8 +38,7 @@ char *read_line()
 			buffer = realloc(buffer, sizeof(char) * buffsize);
 			if (!buffer)
 			{
-				errmsg = "(Segfault) core section dumped";
-				write(2, errmsg, _strlen(errmsg));
+				perror("dash:Error");
 				exit(EXIT_FAILURE);
 			}
 		}

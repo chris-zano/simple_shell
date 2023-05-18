@@ -35,17 +35,15 @@ char *search_path(char **filename)
 {
 	char *prefix = "PATH=";
 	char *path = _getenv("PATH");
-	char *path_copy;
-	char *dir;
+	char *path_copy, *dir;
 	DIR *dp;
 	struct dirent *entry;
 
 	if (path == NULL)
 	{
-		perror("dash:Error path is null");
+		perror("dash:Error");
 		return (NULL);
 	}
-
 	path = remove_prefix(path, prefix);
 	path_copy = _strdup(path);
 	dir = _strtok(path_copy, ":");
@@ -55,7 +53,7 @@ char *search_path(char **filename)
 		dp = opendir(dir);
 		if (dp == NULL)
 		{
-			perror("dash:Error failed to open dir");
+			perror("dash:Error");
 			continue;
 		}
 

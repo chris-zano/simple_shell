@@ -2,14 +2,13 @@
 
 int dash_setenv(char **args)
 {
-	char *env = NULL, **env_copy, *var;
+	char *env = NULL, **env_copy, *var;;
 	size_t count = 0;
 	int i = 0;
 
 	if (!args[1] || !args[2])
 	{
-		errmsg = "Usage: setenv VARIABLE VALUE\n";
-		write(2, errmsg, _strlen(errmsg));
+		perror("dash:Error");
 		return (-1);
 	}
 	var = malloc((_strlen(args[1])) + 1 + (_strlen(args[2])) + 1);

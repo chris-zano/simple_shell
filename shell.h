@@ -19,7 +19,6 @@
 #define RESET "\e[0m"
 
 extern char **environ;
-
 /* struct declarations go here */
 
 typedef int (*builtinFunc)(char **args);
@@ -58,7 +57,7 @@ int is_builtin(char *command, char **args, char **builtin_args);
 int dash_setenv(char **args);
 int dash_unsetenv(char **args);
 char *remove_prefix(char *path, char *prefix);
-
+char *_strcpy(char *dest, char *src);
 void *_memchr(void const *s, int c_in, size_t n);
 size_t _strspn(const char *str1, const char *str2);
 char *_strpbrk(const char *s, const char *accept);

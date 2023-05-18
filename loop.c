@@ -19,7 +19,7 @@ void loop(void)
 		write(0, "~$ ", 3);
 		n = _getline(&buffer, &size, stdin);
 		if (n == -1)
-			exit(EXIT_FAILURE);
+			break;
 		args = split_line(buffer);
 
 		if (is_builtin(args[0], args, builtin_args) == 0)

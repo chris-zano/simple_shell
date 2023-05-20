@@ -9,7 +9,9 @@ int dash_builtin(char *command, char **args)
 	builtin_t builtins[] = {
 		{"exit", dash_exit},
 		{"setenv", dash_setenv},
-		{"unsetenv", dash_unsetenv}
+		{"unsetenv", dash_unsetenv},
+		{"cd", dash_cd},
+		{"alias", dash_alias}
 	};
 
 	len = sizeof(builtins) / sizeof(builtins[0]);

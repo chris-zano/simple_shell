@@ -13,7 +13,7 @@ void loop(void)
 	char **args;
 	char *command;
 	int status = 1;
-	char *builtin_args[] = {"exit", "setenv", "unsetenv", NULL};
+	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 
 	do {
 		write(0, "~$ ", 3);

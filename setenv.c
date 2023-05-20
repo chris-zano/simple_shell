@@ -8,7 +8,7 @@ int dash_setenv(char **args)
 
 	if (!args[1] || !args[2])
 	{
-		perror("dash:Error");
+		printf("Usage: < setenv VARIABLE NAME >\n");
 		return (-1);
 	}
 	var = malloc((_strlen(args[1])) + 1 + (_strlen(args[2])) + 1);

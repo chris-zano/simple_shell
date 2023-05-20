@@ -61,5 +61,7 @@ char *_strcpy(char *dest, char *src);
 void *_memchr(void const *s, int c_in, size_t n);
 size_t _strspn(const char *str1, const char *str2);
 char *_strpbrk(const char *s, const char *accept);
+int dash_cd(char **args);
+int dash_alias(char **args);
 
 #endif /* SHELL_H */

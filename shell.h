@@ -50,7 +50,7 @@ int _strcmp(char *str1, char *str2);
 char *_strcat(char *dest, char *src);
 char *_strdup(char *str);
 char *_getenv(char *str);
-int _strncmp(const char *str1, const char *str2, size_t n);
+int _strncmp(char *str1, char *str2, size_t n);
 int _strlen(char *str);
 int dash_builtin(char *command, char **args);
 int is_builtin(char *command, char **args, char **builtin_args);
@@ -63,5 +63,8 @@ size_t _strspn(const char *str1, const char *str2);
 char *_strpbrk(const char *s, const char *accept);
 int dash_cd(char **args);
 int dash_alias(char **args);
+char *create_path(char *str);
+char *cd_default(char **args);
+
 
 #endif /* SHELL_H */

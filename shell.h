@@ -15,8 +15,6 @@
 #define BUFFER_SIZE 1024
 #define TOK_DELIM " \t\r\n"
 #define TK_BUFF_SIZE 1024
-#define RED "\033[0;31m"
-#define RESET "\e[0m"
 
 extern char **environ;
 /* struct declarations go here */
@@ -65,6 +63,7 @@ int dash_cd(char **args);
 int dash_alias(char **args);
 char *create_path(char *str);
 char *cd_default(char **args);
-
+char **call_cmds(char *line);
+void search_execute(char **args, char **builtin_args);
 
 #endif /* SHELL_H */

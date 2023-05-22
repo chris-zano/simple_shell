@@ -11,12 +11,14 @@ char **split_line(char *line)
 	int buffsize = TK_BUFF_SIZE;
 	int position = 0, i = 0, j = 0;
 	char **tokens = malloc(buffsize * sizeof(char *));
-	char **retcal;
-	char *token;
+	char **retcal, *token;
 
 	for (i = 0; line[i] != '\0'; i++)
 		if (line[i] == ';')
-			return (NULL);
+		{
+			tokens[position] = NULL;
+			return (tokens);
+		}
 
 	if (!tokens)
 	{

@@ -26,12 +26,12 @@ void search_execute(char **args, char **builtin_args)
 
 void loop(void)
 {
-	char *buffer = NULL, *tok;
+	char *buffer = NULL, *tok, *buf_cpy;
 	size_t size = 0;
 	ssize_t n;
 	char **args, **cmds;
 	char *command;
-	int status = 1, i = 0, j = 0;
+	int status = 1, i = 0, j = 0, count = 0;
 	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 
 	do {
@@ -40,11 +40,13 @@ void loop(void)
 		if (n == -1)
 			break;
 		args = split_line(buffer);
+		printlog(args);
 
-		if (args == NULL)
+		if (args[0] == NULL)
 		{
-			cmds = malloc(_strlen(buffer));
-			tok = _strtok(buffer, ";");
+			buf_cpy = _strdup(buffer);
+			cmds = malloc((size + 1) * sizeof(char *));
+			tok = _strtok(buf_cpy, ";");
 
 			while(tok != NULL)
 			{
@@ -52,15 +54,25 @@ void loop(void)
 				tok = _strtok(NULL, ";");
 				i++;
 			}
-			for (j = 0; j != i; j++)
+			cmds[i] = NULL;
+			for (j = 0; j < i; j++)
 			{
 				args = split_line(cmds[j]);
-				search_execute(args, builtin_args);
+				if (args != NULL)
+				{
+					search_execute(args, builtin_args);
+					free(args);
+				}
 			}
+			free(cmds);
+			free(buf_cpy);
 		}
 		else
+		{
+			printlog(args);
 			search_execute(args, builtin_args);
-		free(args);
-		free(cmds);
+			free(args);
+		}
+		free(buffer);
 	} while (status);
 }

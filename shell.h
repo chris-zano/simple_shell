@@ -22,6 +22,7 @@
 extern char **environ;
 /* struct declarations go here */
 
+typedef void (*ExecuteCb)(char **str);
 typedef int (*builtinFunc)(char **args);
 
 /**
@@ -88,5 +89,6 @@ void printlog(char **strarr);
 void dfree(char **dptr);
 void dash_logic(char **args);
 char *replace_variables(char *line, int exit_status);
+int _split(char *buffer);
 
 #endif /* SHELL_H */

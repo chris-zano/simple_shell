@@ -46,9 +46,9 @@ void loop(void)
 	ssize_t n;
 	char **args, **cmds;
 	char *command, *line;
+	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 	int exit_status = 0;
 	int status = 1, i = 0, j = 0, count = 0, k = 0;
-	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 
 	do
 	{
@@ -57,34 +57,11 @@ void loop(void)
 		if (n == -1)
 			break;
 
-		line = replace_variables(buffer, exit_status);
+		// line = replace_variables(buffer, exit_status);
 		args = split_line(buffer);
 
 		if (args[0] == NULL)
-		{
-			buf_cpy = _strdup(buffer);
-			cmds = malloc((size + 1) * sizeof(char *));
-			tok = _strtok(buf_cpy, ";");
-
-			while (tok != NULL)
-			{
-				cmds[i] = tok;
-				tok = _strtok(NULL, ";");
-				i++;
-			}
-			cmds[i] = NULL;
-			for (j = 0; j < i; j++)
-			{
-				args = split_line(cmds[j]);
-				if (args != NULL)
-				{
-					search_execute(args, builtin_args);
-					free(args);
-				}
-			}
-			free(cmds);
-			free(buf_cpy);
-		}
+			break;
 		else
 		{
 			search_execute(args, builtin_args);

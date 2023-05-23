@@ -15,10 +15,14 @@
 #define BUFFER_SIZE 1024
 #define TOK_DELIM " \t\r\n"
 #define TK_BUFF_SIZE 1024
+#define MAX_ALIAS 100
+#define MAX_ALIAS_LEN 100
+
 
 extern char **environ;
 /* struct declarations go here */
 
+typedef void (*ExecuteCb)(char **str);
 typedef int (*builtinFunc)(char **args);
 
 /**
@@ -34,6 +38,22 @@ typedef struct built_in
 	char *name;
 	builtinFunc func;
 } builtin_t;
+
+/**
+ * struct alias_s - struct definition for alias
+ *
+ * @name: name of alias
+ *
+ * @value: value of alias assignment
+ */
+
+typedef struct alias_s 
+{
+	char name[MAX_ALIAS_LEN];
+	char value[MAX_ALIAS_LEN];
+} alias_t;
+
+
 
 /* function declarations go here */
 char *read_line();
@@ -67,6 +87,8 @@ char **call_cmds(char *line);
 void search_execute(char **args, char **builtin_args);
 void printlog(char **strarr);
 void dfree(char **dptr);
-
+void dash_logic(char **args);
+char *replace_variables(char *line, int exit_status);
+int _split(char *buffer);
 
 #endif /* SHELL_H */

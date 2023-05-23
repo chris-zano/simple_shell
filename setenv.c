@@ -2,7 +2,8 @@
 
 int dash_setenv(char **args)
 {
-	char *env = NULL, **env_copy, *var;;
+	char *env = NULL;
+	char **env_copy, *var;
 	size_t count = 0;
 	int i = 0;
 
@@ -15,7 +16,6 @@ int dash_setenv(char **args)
 
 	if (var == NULL)
 		return (-1);
-
 	_strcpy(var, args[1]);
 	_strcat(var, "=");
 	_strcat(var, args[2]);
@@ -29,7 +29,6 @@ int dash_setenv(char **args)
 	}
 	for (count = 0; environ[count]; count++)
 		;
-
 	env_copy = malloc(sizeof(char *) * (count + 1));
 
 	if (env_copy == NULL)
@@ -39,14 +38,9 @@ int dash_setenv(char **args)
 	}
 	for (i = 0; environ[i]; i++)
 		env_copy[i] = _strdup(environ[i]);
-
-	env_copy[i] = var;
-	env_copy[i + 1] = NULL;
-	environ = env_copy;
-	/*
 	environ = env_copy;
 	environ[i] = var;
-	environ[i + 1] = NULL;*/
+	environ[i + 1] = NULL;
 	return (0);
 }
 
@@ -80,14 +74,13 @@ int dash_unsetenv(char **args)
 		if (var == environ[i])
 		{
 			printf("%s === %s\n", var, environ[i]);
-			/*free(var);*/
 			continue;
 		}
 		env_copy[j] = environ[i];
 		j++;
 	}
-	/*environ = env_copy;
-	environ[size -1] = NULL;*/
+	environ = env_copy;
+	environ[count - 1] = NULL;
 
 	printf("unsetenv function has been called\n");
 	return (0);

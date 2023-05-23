@@ -83,7 +83,6 @@ int dash_cd(char **args);
 int dash_alias(char **args);
 char *create_path(char *str);
 char *cd_default(char **args);
-char **call_cmds(char *line);
 void search_execute(char **args, char **builtin_args);
 void printlog(char **strarr);
 void dfree(char **dptr);

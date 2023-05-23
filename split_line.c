@@ -10,25 +10,14 @@ char **split_line(char *line)
 {
 	int buffsize = TK_BUFF_SIZE;
 	int position = 0, i = 0, j = 0;
-	int retcal;
 	char **tokens = malloc(buffsize * sizeof(char *));
 	char *token;
 
 	for (i = 0; line[i] != '\0'; i++)
 		if (line[i] == ';')
 		{
-			retcal = _split(line);
-			if (retcal == 0)
-			{
-				tokens[position] = NULL;
-				return (tokens);
-			}
-			if (retcal != 0)
-			{
-				perror("failed to handle command separators");
-				tokens[position] = NULL;
-				return (tokens);
-			}
+			tokens[position] = NULL;
+			return (tokens);
 		}
 
 	if (!tokens)
@@ -86,11 +75,8 @@ int _split(char *buffer)
 	while (j < i)
 	{
 		args = split_line(array[j]);
-		if (args != NULL)
-		{
-			search_execute(args, builtin_args);
-			free(args);
-		}
+		search_execute(args, builtin_args);
+		// free(args);
 		j++;
 	}
 	return (0);

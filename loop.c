@@ -28,7 +28,6 @@ void search_execute(char **args, char **builtin_args)
 	}
 	if (is_builtin(args[0], args, builtin_args) == 0)
 	{
-		printf("psych, I'm executing this too ;<)\n");
 		command = search_path(args);
 		dash_execute(command, args);
 	}
@@ -48,6 +47,7 @@ void loop(void)
 	char *command, *line;
 	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 	int exit_status = 0;
+	int retcal;
 	int status = 1, i = 0, j = 0, count = 0, k = 0;
 
 	do
@@ -61,12 +61,17 @@ void loop(void)
 		args = split_line(buffer);
 
 		if (args[0] == NULL)
-			break;
+		{
+			retcal = _split(buffer);
+			if (retcal == 0)
+				continue;
+			else
+				break;
+		}
 		else
 		{
 			search_execute(args, builtin_args);
-			free(args);
 		}
-		free(buffer);
+		// free(buffer);
 	} while (status);
 }

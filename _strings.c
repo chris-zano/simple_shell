@@ -5,7 +5,6 @@
  *
  * @dest: a pointer to the destination buffer.
  * @src: the string to be appended.
- *
  * Return: a pointer to dest.
  */
 

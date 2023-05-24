@@ -32,6 +32,6 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 	{
 		waitpid(cpid, &status, WUNTRACED);
 	}
-	// free(args);
+	/* free(args);*/
 	return (0);
 }

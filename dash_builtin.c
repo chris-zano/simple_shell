@@ -1,5 +1,15 @@
 #include "shell.h"
 
+/**
+ * dash_builtin - maps builtin commands to their respective function pointers
+ *
+ * @command: builtin command
+ *
+ * @args: optional arguments for command
+ *
+ * Return: 0 (success), -1 (fail)
+ */
+
 int dash_builtin(char *command, char **args)
 {
 	int i = 0;

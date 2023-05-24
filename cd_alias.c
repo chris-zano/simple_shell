@@ -93,6 +93,14 @@ int dash_cd(char **args)
 	return (0);
 }
 
+/**
+ * dash_alias - excutes the alias builtin
+ *
+ * @args: tokenised arguments
+ *
+ * Return: 0 (success), -1 (fail)
+ */
+
 int dash_alias(char **args)
 {
 	alias_t alias[MAX_ALIAS];
@@ -112,8 +120,7 @@ int dash_alias(char **args)
 		{
 			name = _strtok(args[i], "=");
 			value = _strtok(NULL, "=");
-
-			if (value = NULL)
+			if (value == NULL)
 				for (j = 0; j < count; j++)
 				{
 					if (_strcmp(alias[j].name, name) == 0)
@@ -128,15 +135,13 @@ int dash_alias(char **args)
 			{
 				j = 0;
 				for (j = 0; j < count; j++)
-				{
 					if (_strcmp(alias[j].name, name) == 0)
 					{
 						_strcpy(alias[j].value, value);
 						break;
 					}
-				}
 			}
-			if (j = count)
+			if (j == count)
 			{
 				if (count >= MAX_ALIAS)
 				{

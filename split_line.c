@@ -47,6 +47,14 @@ char **split_line(char *line)
 	return (tokens);
 }
 
+/**
+ * _split - splits a line separated by command separator ;
+ *
+ * @buffer: argument container commands split by ;
+ *
+ * Return: 0, Always
+ */
+
 int _split(char *buffer)
 {
 	char *buf_copy = _strdup(buffer);
@@ -76,7 +84,6 @@ int _split(char *buffer)
 	{
 		args = split_line(array[j]);
 		search_execute(args, builtin_args);
-		// free(args);
 		j++;
 	}
 	return (0);

@@ -25,7 +25,7 @@ extern char **environ;
 
 typedef void (*ExecuteCb)(char **str);
 typedef int (*builtinFunc)(char **args);
-
+typedef unsigned long int longword;
 /**
  * struct built_in - struct definition for builtin commands
  *

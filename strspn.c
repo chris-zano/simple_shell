@@ -4,8 +4,8 @@
  * _strspn - Returns the length of the initial portion of
  * str1 which consists only of characters that are part of str2
  *
- * @s: input
- * @accept: input
+ * @str1: input
+ * @str2: input
  *
  * Return: Always 0 (Success)
  */
@@ -25,8 +25,7 @@ size_t _strspn(const char *str1, const char *str2)
 		}
 		if (*a == '\0')
 			return (count);
-		else
-			++count;
+		++count;
 	}
 	return (count);
 }

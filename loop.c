@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * search_execute - searches for a command and executes
@@ -50,7 +51,7 @@ void loop(void)
 	int status = 1;
 
 	do {
-		write(0, "~$ ", 3);
+		_printf("~$ ");
 		n = _getline(&buffer, &size, stdin);
 		if (n == -1)
 			break;

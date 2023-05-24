@@ -48,6 +48,9 @@ char *search_path(char **filename)
 	path_copy = _strdup(path);
 	dir = _strtok(path_copy, ":");
 
+	if (strstr(filename[0], "/") != NULL)
+		return (filename[0]);
+
 	while (dir != NULL)
 	{
 		dp = opendir(dir);

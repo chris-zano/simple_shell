@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * dash_setenv - sets the environment variables
@@ -15,7 +16,7 @@ int dash_setenv(char **args)
 
 	if (!args[1] || !args[2])
 	{
-		printf("Usage: < setenv VARIABLE NAME >\n");
+		_printf("Usage: < setenv VARIABLE NAME >\n");
 		return (-1);
 	}
 	var = malloc((_strlen(args[1])) + 1 + (_strlen(args[2])) + 1);
@@ -66,11 +67,11 @@ int dash_unsetenv(char **args)
 
 	if (!args[1])
 	{
-		printf("Usage: < unsetenv VARIABLE >\n");
+		_printf("Usage: < unsetenv VARIABLE >\n");
 		return (-1);
 	}
 	var = _getenv(args[1]);
-	printf("%s\n", var);
+	_printf("%s\n", var);
 
 	if (!var)
 		return (0);
@@ -86,7 +87,7 @@ int dash_unsetenv(char **args)
 	{
 		if (var == environ[i])
 		{
-			printf("%s === %s\n", var, environ[i]);
+			_printf("%s === %s\n", var, environ[i]);
 			continue;
 		}
 		env_copy[j] = environ[i];
@@ -95,6 +96,6 @@ int dash_unsetenv(char **args)
 	environ = env_copy;
 	environ[count - 1] = NULL;
 
-	printf("unsetenv function has been called\n");
+	_printf("unsetenv function has been called\n");
 	return (0);
 }

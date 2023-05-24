@@ -1,4 +1,6 @@
 #include "shell.h"
+#include "main.h"
+
 /**
  * main - entry point of the program.
  * @argc: argument count
@@ -21,7 +23,7 @@ int main(int argc, char *argv[])
 		file = fopen(argv[1], "r");
 		if (file == NULL)
 		{
-			printf("Error opening file: %s\n", argv[1]);
+			_printf("Error opening file: %s\n", argv[1]);
 			return (1);
 		}
 		while (fgets(command, sizeof(command), file) != NULL)

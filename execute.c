@@ -19,13 +19,13 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 	{
 		if (execve(path, args, environ) == -1)
 		{
-			perror("dash:Error");
+			perror("./hsh: ");
 			exit(EXIT_FAILURE);
 		}
 	}
 	else if (cpid < 0)
 	{
-		perror("dash:Error");
+		perror("./hsh: ");
 		return (-1);
 	}
 	else

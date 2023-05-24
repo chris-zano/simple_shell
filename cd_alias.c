@@ -35,7 +35,7 @@ char *cd_default(char **args)
 
 		if (!dir)
 		{
-			perror("dash:Error: cd");
+			perror("./hsh: ");
 			return (NULL);
 		}
 	}
@@ -45,7 +45,7 @@ char *cd_default(char **args)
 
 		if (!dir)
 		{
-			perror("dash:Error: cd");
+			perror("./hsh: ");
 			return (NULL);
 		}
 	}
@@ -69,14 +69,14 @@ int dash_cd(char **args)
 
 	if (cdir != 0)
 	{
-		perror("dash:Error: cd");
+		perror("./hsh: ");
 		return (1);
 	}
 	cwd = getcwd(NULL, 0);
 
 	if (!cwd)
 	{
-		perror("dash:Error: cd");
+		perror("./hsh: ");
 		return (1);
 	}
 	setenv_args[0] = "PWD";
@@ -85,7 +85,7 @@ int dash_cd(char **args)
 
 	if (cdir != 0)
 	{
-		perror("dash:Error: cd");
+		perror("./hsh: ");
 		free(cwd);
 		return (1);
 	}

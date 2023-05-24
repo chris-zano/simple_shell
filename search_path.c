@@ -41,7 +41,7 @@ char *search_path(char **filename)
 
 	if (path == NULL)
 	{
-		perror("dash:Error");
+		perror("./hsh: ");
 		return (NULL);
 	}
 	path = remove_prefix(path, prefix);
@@ -56,7 +56,7 @@ char *search_path(char **filename)
 		dp = opendir(dir);
 		if (dp == NULL)
 		{
-			perror("dash:Error");
+			perror("./hsh: ");
 			continue;
 		}
 

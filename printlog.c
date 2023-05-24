@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * printlog - prints the strings in an array of strings
@@ -13,5 +14,5 @@ void printlog(char **strarr)
 	int i = 0;
 
 	for (i = 0; strarr[i]; i++)
-		printf("log -> %s\n", strarr[i]);
+		_printf("log -> %s\n", strarr[i]);
 }

@@ -22,7 +22,7 @@ char **split_line(char *line)
 
 	if (!tokens)
 	{
-		perror("dash:Error");
+		perror("./hsh: ");
 		exit(EXIT_FAILURE);
 	}
 	token = _strtok(line, TOK_DELIM);
@@ -36,7 +36,7 @@ char **split_line(char *line)
 			tokens = realloc(tokens, buffsize * sizeof(char *));
 			if (!tokens)
 			{
-				perror("dash:Error");
+				perror("./hsh: ");
 				exit(EXIT_FAILURE);
 			}
 		}

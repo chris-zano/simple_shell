@@ -1,19 +1,27 @@
 #include "shell.h"
 
+/**
+ * _memchr - searches the first n bytes of the memory area pointed to by s
+ * @s: memory area to scan
+ * @c_in: first instance to look for
+ * @n: size in bytes
+ *
+ * Return: void
+ */
+
 void *_memchr(void const *s, int c_in, size_t n)
 {
 	const unsigned char *char_ptr;
-	const longword *longword_ptr;
-	longword repeated_one, repeated_c;
-	unsigned char c;
+	longword *longword_ptr, repeated_one, repeated_c, longword1;
+	unsigned char c = (unsigned char) c_in;
+	size_t i;
 
-	c = (unsigned char) c_in;
 	for (char_ptr = (const unsigned char *) s;
 	 n > 0 && (size_t) char_ptr % sizeof(longword) != 0;
 	 --n, ++char_ptr)
 	if (*char_ptr == c)
 		return ((void *) char_ptr);
-	longword_ptr = (const longword *) char_ptr;
+	longword_ptr = (longword *) char_ptr;
 	repeated_one = 0x01010101;
 	repeated_c = c | (c << 8);
 	repeated_c |= repeated_c << 16;
@@ -21,9 +29,8 @@ void *_memchr(void const *s, int c_in, size_t n)
 	{
 		repeated_one |= repeated_one << 31 << 1;
 		repeated_c |= repeated_c << 31 << 1;
-		if (8 < sizeof(longword))
+		if (sizeof(longword) > 8)
 		{
-			size_t i;
 			for (i = 64; i < sizeof(longword) * 8; i *= 2)
 			{
 				repeated_one |= repeated_one << i;
@@ -33,7 +40,7 @@ void *_memchr(void const *s, int c_in, size_t n)
 	}
 	while (n >= sizeof(longword))
 	{
-		longword longword1 = *longword_ptr ^ repeated_c;
+		longword1 = *longword_ptr ^ repeated_c;
 		if ((((longword1 - repeated_one) & ~longword1) & (repeated_one << 7)) != 0)
 			break;
 		longword_ptr++;
@@ -41,9 +48,7 @@ void *_memchr(void const *s, int c_in, size_t n)
 	}
 	char_ptr = (const unsigned char *) longword_ptr;
 	for (; n > 0; --n, ++char_ptr)
-	{
 		if (*char_ptr == c)
-		return ((void *) char_ptr);
-	}
-return (NULL);
+			return ((void *) char_ptr);
+	return (NULL);
 }

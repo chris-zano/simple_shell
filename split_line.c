@@ -9,7 +9,7 @@
 char **split_line(char *line)
 {
 	int buffsize = TK_BUFF_SIZE;
-	int position = 0, i = 0, j = 0;
+	int position = 0, i = 0;
 	char **tokens = malloc(buffsize * sizeof(char *));
 	char *token;
 

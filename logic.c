@@ -7,18 +7,13 @@
  */
 void dash_logic(char **args)
 {
-	int status;
-	pid_t cpid;
-	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
-	char *command, *cmd;
-	char **array, **tokens, *tok;
+	char *command, **array, **tokens, *tok;
 	int i = 0, j = 0, k = 0;
-	int m;
 
 	while (args[i])
 		i++;
 	command = calloc(1024, sizeof(char));
-	for (int k = 0; args[k]; k++)
+	for (k = 0; args[k]; k++)
 	{
 		_strcat(command, args[k]);
 		_strcat(command, " ");
@@ -41,8 +36,8 @@ void dash_logic(char **args)
 		if (array[j])
 		{
 			tokens = split_line(array[j]);
-			m = log_exec(tokens);
-			if (m == 0) return;
+			if (log_exec(tokens))
+				return;
 		}
 		j++;
 	}
@@ -60,7 +55,7 @@ void dash_logic(char **args)
 
 int log_exec(char **args)
 {
-	int status, val = 0;
+	int status;
 	pid_t cpid;
 	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 	char *path;

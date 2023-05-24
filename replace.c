@@ -46,9 +46,6 @@ char *replace_variables(char *line, int exit_status)
 	}
 	if (replaced)
 		return (result);
-	else
-	{
-		free(result);
-		return (line);
-	}
+	free(result);
+	return (line);
 }

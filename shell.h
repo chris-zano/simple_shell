@@ -48,7 +48,7 @@ typedef struct built_in
  * @value: value of alias assignment
  */
 
-typedef struct alias_s 
+typedef struct alias_s
 {
 	char name[MAX_ALIAS_LEN];
 	char value[MAX_ALIAS_LEN];

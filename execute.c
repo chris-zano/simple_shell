@@ -26,6 +26,7 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 	else if (cpid < 0)
 	{
 		perror("dash:Error");
+		return (-1);
 	}
 	else
 	{

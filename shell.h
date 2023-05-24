@@ -6,6 +6,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <ctype.h>
 #include <stddef.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -89,5 +90,6 @@ void dfree(char **dptr);
 void dash_logic(char **args);
 char *replace_variables(char *line, int exit_status);
 int _split(char *buffer);
+int log_exec(char **args);
 
 #endif /* SHELL_H */

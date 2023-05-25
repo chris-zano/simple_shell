@@ -9,7 +9,7 @@
 char *error_126(char **args)
 {
 	char *error, *hist_str, *name = "";
-	int len, hist = 0;;
+	int len, hist = 0;
 
 	hist_str = dash_toalpha(hist);
 	if (!hist_str)

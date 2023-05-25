@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * dash_execute - carries out the execution of commands
@@ -19,13 +20,13 @@ int dash_execute(char *path, __attribute__((unused))char **args)
 	{
 		if (execve(path, args, environ) == -1)
 		{
-			perror("./hsh: ");
+			_printf("./hsh: %d: %s\n", errno, strerror(errno));
 			exit(EXIT_FAILURE);
 		}
 	}
 	else if (cpid < 0)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		return (-1);
 	}
 	else

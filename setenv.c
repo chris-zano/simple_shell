@@ -16,7 +16,7 @@ int dash_setenv(char **args)
 
 	if (!args[1] || !args[2])
 	{
-		_printf("Usage: < setenv VARIABLE NAME >\n");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		return (-1);
 	}
 	var = malloc((_strlen(args[1])) + 1 + (_strlen(args[2])) + 1);
@@ -67,7 +67,7 @@ int dash_unsetenv(char **args)
 
 	if (!args[1])
 	{
-		_printf("Usage: < unsetenv VARIABLE >\n");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		return (-1);
 	}
 	var = _getenv(args[1]);

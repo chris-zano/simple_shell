@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * remove_prefix - removes prefix from the path
@@ -41,7 +42,7 @@ char *search_path(char **filename)
 
 	if (path == NULL)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		return (NULL);
 	}
 	path = remove_prefix(path, prefix);
@@ -56,7 +57,7 @@ char *search_path(char **filename)
 		dp = opendir(dir);
 		if (dp == NULL)
 		{
-			perror("./hsh: ");
+			_printf("./hsh: %d: %s\n", errno, strerror(errno));
 			continue;
 		}
 

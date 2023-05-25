@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * read_line - reads a line from standard input
@@ -15,13 +16,13 @@ char *read_line()
 
 	if (!buffer)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		exit(EXIT_FAILURE);
 	}
 	while (1)
 	{
 		c = getchar();
-		if (c == EOF || c == '\n')
+		if (c == EOF)
 		{
 			buffer[position] = '\0';
 			return (buffer);
@@ -38,9 +39,10 @@ char *read_line()
 			buffer = realloc(buffer, sizeof(char) * buffsize);
 			if (!buffer)
 			{
-				perror("./hsh: ");
+				_printf("./hsh: %d: %s\n", errno, strerror(errno));
 				exit(EXIT_FAILURE);
 			}
 		}
 	}
+	free(buffer);
 }

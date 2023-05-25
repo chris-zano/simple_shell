@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * split_line - splits a line of strings into individual tokens of strings
@@ -22,7 +23,8 @@ char **split_line(char *line)
 
 	if (!tokens)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
+		free(tokens);
 		exit(EXIT_FAILURE);
 	}
 	token = _strtok(line, TOK_DELIM);
@@ -36,7 +38,8 @@ char **split_line(char *line)
 			tokens = realloc(tokens, buffsize * sizeof(char *));
 			if (!tokens)
 			{
-				perror("./hsh: ");
+				_printf("./hsh: %d: %s\n", errno, strerror(errno));
+				free(tokens);
 				exit(EXIT_FAILURE);
 			}
 		}

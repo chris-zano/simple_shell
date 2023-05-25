@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "main.h"
 
 /**
  * create_path - removes leading characters up to the =
@@ -35,7 +36,7 @@ char *cd_default(char **args)
 
 		if (!dir)
 		{
-			perror("./hsh: ");
+			_printf("./hsh: %d: %s\n", errno, strerror(errno));
 			return (NULL);
 		}
 	}
@@ -45,7 +46,7 @@ char *cd_default(char **args)
 
 		if (!dir)
 		{
-			perror("./hsh: ");
+			_printf("./hsh: %d: %s\n", errno, strerror(errno));
 			return (NULL);
 		}
 	}
@@ -69,14 +70,15 @@ int dash_cd(char **args)
 
 	if (cdir != 0)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		return (1);
 	}
 	cwd = getcwd(NULL, 0);
 
 	if (!cwd)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
+		free(cwd);
 		return (1);
 	}
 	setenv_args[0] = "PWD";
@@ -85,7 +87,7 @@ int dash_cd(char **args)
 
 	if (cdir != 0)
 	{
-		perror("./hsh: ");
+		_printf("./hsh: %d: %s\n", errno, strerror(errno));
 		free(cwd);
 		return (1);
 	}

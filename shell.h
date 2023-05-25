@@ -1,93 +1,109 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef _SHELL_H_
+#define _SHELL_H_
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <signal.h>
+#include <fcntl.h>
 #include <sys/types.h>
-#include <sys/wait.h>
-#include <stddef.h>
-#include <unistd.h>
 #include <sys/stat.h>
-#include <dirent.h>
+#include <sys/wait.h>
+#include <unistd.h>
+#include <errno.h>
 
-/* macro definitions */
-#define BUFFER_SIZE 1024
-#define TOK_DELIM " \t\r\n"
-#define TK_BUFF_SIZE 1024
-#define MAX_ALIAS 100
-#define MAX_ALIAS_LEN 100
-
+#define END_OF_FILE -2
+#define EXIT -3
 
 extern char **environ;
-/* struct declarations go here */
-
-typedef void (*ExecuteCb)(char **str);
-typedef int (*builtinFunc)(char **args);
-
+extern char *name;
+extern int hist;
 /**
- * struct built_in - struct definition for builtin commands
- *
- * @name: name of the builtin
- *
- * @func: fuction pointer to execute the builtin command
+ * struct list_s - A new struct type defining a linked list.
+ * @dir: A directory path.
+ * @next: A pointer to another struct list_s.
  */
-
+typedef struct list_s
+{
+	char *dir;
+	struct list_s *next;
+} list_t;
+/**
+ * struct built_in - A new struct type defining builtin commands.
+ * @name: The name of the builtin command.
+ * @f: A function pointer to the builtin command's function.
+ */
 typedef struct built_in
 {
 	char *name;
-	builtinFunc func;
+	int (*f)(char **argv, char **front);
 } builtin_t;
-
 /**
- * struct alias_s - struct definition for alias
- *
- * @name: name of alias
- *
- * @value: value of alias assignment
+ * struct alias_s - A new struct defining aliases.
+ * @name: The name of the alias.
+ * @value: The value of the alias.
+ * @next: A pointer to another struct alias_s.
  */
-
-typedef struct alias_s 
+typedef struct alias_s
 {
-	char name[MAX_ALIAS_LEN];
-	char value[MAX_ALIAS_LEN];
+	char *name;
+	char *value;
+	struct alias_s *next;
 } alias_t;
 
-
-
-/* function declarations go here */
-char *read_line();
-char **split_line(char *);
-char *search_path(char **filename);
-int dash_execute(char *path, char **args);
-int dash_exit(char **args);
-void loop(void);
-char *_strtok(char *str, char *delim);
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-int _strcmp(char *str1, char *str2);
-char *_strcat(char *dest, char *src);
-char *_strdup(char *str);
-char *_getenv(char *str);
-int _strncmp(char *str1, char *str2, size_t n);
-int _strlen(char *str);
-int dash_builtin(char *command, char **args);
-int is_builtin(char *command, char **args, char **builtin_args);
-int dash_setenv(char **args);
-int dash_unsetenv(char **args);
-char *remove_prefix(char *path, char *prefix);
-char *_strcpy(char *dest, char *src);
-void *_memchr(void const *s, int c_in, size_t n);
-size_t _strspn(const char *str1, const char *str2);
-char *_strpbrk(const char *s, const char *accept);
-int dash_cd(char **args);
-int dash_alias(char **args);
-char *create_path(char *str);
+alias_t *aliases;
+ssize_t dash_getline(char **lineptr, size_t *n, FILE *stream);
+void *dash_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char **dash_strtok(char *line, char *delim);
+char *_splitargs(char *line, int *exe_ret);
+int _partargs(char **args, char **front, int *exe_ret);
+char *_strcpy(char *dest, const char *src);
+int _execargs(char **args, char **front, int *exe_ret);
+int _parse_args(int *exe_ret);
+char *dash_getenv(char *str);
 char *cd_default(char **args);
-void search_execute(char **args, char **builtin_args);
-void printlog(char **strarr);
-void dfree(char **dptr);
-void dash_logic(char **args);
-char *replace_variables(char *line, int exit_status);
-int _split(char *buffer);
+int _strspn(char *s, char *accept);
+int _ops_in_args(char **args);
+void dash_freeargs(char **args, char **front);
+char *search_path(char *command);
+list_t *dash_split(char *path);
+int _strlen(const char *s);
+int dash_execute(char **args, char **front);
+int _strncmp(const char *s1, const char *s2, size_t n);
+void dash_freelist(list_t *head);
+char *dash_toalpha(int num);
+void dash_logic(char **line, ssize_t read);
+void dash_replace(char **args, int *exe_ret);
+char **replace_alias(char **args);
+int (*dash_builtin(char *command))(char **args, char **front);
+char *_strncat(char *dest, const char *src, size_t n);
+char *_strchr(char *s, char c);
+int dash_exit(char **args, char **front);
+int dash_env(char **args, char __attribute__((__unused__)) **front);
+int dash_setenv(char **args, char __attribute__((__unused__)) **front);
+char *_strcat(char *dest, const char *src);
+int create_error(char **args, int err);
+int dash_unsetenv(char **args, char __attribute__((__unused__)) **front);
+char *dash_errorenv(char **args);
+char *dash_errortoexit(char **args);
+char *alias_error(char **args);
+int dash_cd(char **args, char __attribute__((__unused__)) **front);
+int _strcmp(char *s1, char *s2);
+char **_copyenv(void);
+void free_env(void);
+char **_getenv(const char *var);
+char *error_2_cd(char **args);
+char **replace_alias(char **args);
+void free_alias_list(alias_t *head);
+list_t *add_node_end(list_t **head, char *dir);
+char *error_2_syntax(char **args);
+char *error_126(char **args);
+char *error_127(char **args);
+void dash_freelist(list_t *head);
+int proc_file_commands(char *file_path, int *exe_ret);
+ssize_t get_new_len(char *line);
+void logical_ops(char *line, ssize_t *new_len);
+int filecommands(char *line, unsigned int line_size, int *ret);
+void insert_spaces(const char *old_line, char *new_line);
+void freenull(char *args);
 
-#endif /* SHELL_H */
+#endif /* _SHELL_H_ */

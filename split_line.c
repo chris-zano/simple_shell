@@ -1,83 +1,100 @@
 #include "shell.h"
 
 /**
- * split_line - splits a line of strings into individual tokens of strings
- * @line: pointer to a string of text;
- * Return: An array containing the tokenized strings
+ * token_len - Locates the delimiter index marking the end
+ * of the first token contained within a string.
+ * @str: The string to be searched.
+ * @delim: The delimiter character.
+ *
+ * Return: The delimiter index marking the end of
+ *         the intitial token pointed to be str.
  */
-
-char **split_line(char *line)
+int token_len(char *str, char *delim)
 {
-	int buffsize = TK_BUFF_SIZE;
-	int position = 0, i = 0, j = 0;
-	char **tokens = malloc(buffsize * sizeof(char *));
-	char *token;
+	int index = 0, len = 0;
 
-	for (i = 0; line[i] != '\0'; i++)
-		if (line[i] == ';')
-		{
-			tokens[position] = NULL;
-			return (tokens);
-		}
+	while (*(str + index) && *(str + index) != *delim)
+	{
+		len++;
+		index++;
+	}
 
-	if (!tokens)
+	return (len);
+}
+
+/**
+ * count_tokens - Counts the number of delimited
+ *                words contained within a string.
+ * @str: The string to be searched.
+ * @delim: The delimiter character.
+ *
+ * Return: The number of words contained within str.
+ */
+int count_tokens(char *str, char *delim)
+{
+	int index, tokens = 0, len = 0;
+
+	for (index = 0; *(str + index); index++)
+		len++;
+
+	for (index = 0; index < len; index++)
 	{
-		perror("dash:Error");
-		exit(EXIT_FAILURE);
-	}
-	token = _strtok(line, TOK_DELIM);
-	while (token != NULL)
-	{
-		tokens[position] = token;
-		position++;
-		if (position >= buffsize)
+		if (*(str + index) != *delim)
 		{
-			buffsize += TK_BUFF_SIZE;
-			tokens = realloc(tokens, buffsize * sizeof(char *));
-			if (!tokens)
-			{
-				perror("dash:Error");
-				exit(EXIT_FAILURE);
-			}
+			tokens++;
+			index += token_len(str + index, delim);
 		}
-		token = _strtok(NULL, TOK_DELIM);
 	}
-	tokens[position] = NULL;
 
 	return (tokens);
 }
 
-int _split(char *buffer)
+/**
+ * dash_strtok - Tokenizes a string.
+ * @line: The string.
+ * @delim: The delimiter character to tokenize the string by.
+ *
+ * Return: A pointer to an array containing the tokenized words.
+ */
+char **dash_strtok(char *line, char *delim)
 {
-	char *buf_copy = _strdup(buffer);
-	char **array, **args, *tok;
-	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
-	size_t len = 0, i = 0, j = 0;
+	char **ptr;
+	int index = 0, tokens, t, letters, l;
 
-	while (buffer[len])
+	tokens = count_tokens(line, delim);
+	if (tokens == 0)
+		return (NULL);
+
+	ptr = malloc(sizeof(char *) * (tokens + 2));
+	if (!ptr)
+		return (NULL);
+
+	for (t = 0; t < tokens; t++)
 	{
-		len++;
-	}
-	array = malloc((len + 1) * sizeof(char *));
+		while (line[index] == *delim)
+			index++;
 
-	if (array == NULL)
-		return (-1);
-	tok = _strtok(buf_copy, ";");
+		letters = token_len(line + index, delim);
 
-	while (tok != NULL)
-	{
-		array[i] = tok;
-		tok = _strtok(NULL, ";");
-		i++;
-	}
-	array[i] = NULL;
+		ptr[t] = malloc(sizeof(char) * (letters + 1));
+		if (!ptr[t])
+		{
+			for (index -= 1; index >= 0; index--)
+				free(ptr[index]);
+			free(ptr);
+			return (NULL);
+		}
 
-	while (j < i)
-	{
-		args = split_line(array[j]);
-		search_execute(args, builtin_args);
-		// free(args);
-		j++;
+		for (l = 0; l < letters; l++)
+		{
+			ptr[t][l] = line[index];
+			index++;
+		}
+
+		ptr[t][l] = '\0';
 	}
-	return (0);
+	ptr[t] = NULL;
+	ptr[t + 1] = NULL;
+
+	return (ptr);
 }

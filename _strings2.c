@@ -85,7 +85,7 @@ size_t _strspn(const char *str1, const char *str2)
 }
 
 /**
- * _strtok - splits a string into words
+ * _split_tok - splits a string into words
  *
  * @str: string to split.
  * @delim: an array of delimeters.
@@ -93,7 +93,7 @@ size_t _strspn(const char *str1, const char *str2)
  * Return: an array of strings (Success) or NULL (Error)
  */
 
-char *_strtok(char *str, char *delim)
+char *_split_tok(char *str, char *delim)
 {
 	static char *olds;
 	char *token;

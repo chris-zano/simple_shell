@@ -24,11 +24,11 @@ void dash_logic(char **args)
 		free(command);
 		return;
 	}
-	tok = _strtok(command, "||");
+	tok = _split_tok(command, "||");
 	while (tok != NULL)
 	{
 		array[i++] = tok;
-		tok = _strtok(NULL, "||");
+		tok = _split_tok(NULL, "||");
 	}
 	array[i] = NULL;
 	while (j < i)

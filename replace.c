@@ -16,7 +16,7 @@ char *replace_variables(char *line, int exit_status)
 	int replaced = 0;
 
 	_strcpy(result, line);
-	token = _strtok(result, " ");
+	token = _split_tok(result, " ");
 
 	while (token != NULL)
 	{
@@ -34,7 +34,7 @@ char *replace_variables(char *line, int exit_status)
 		}
 		else
 		{
-			token = _strtok(NULL, " ");
+			token = _split_tok(NULL, " ");
 			continue;
 		}
 		variable = strstr(result, token);
@@ -42,7 +42,7 @@ char *replace_variables(char *line, int exit_status)
 		_strlen(variable + _strlen(token)) + 1);
 		strncpy(variable, replacement, _strlen(replacement));
 		free(replacement);
-		token = _strtok(NULL, " ");
+		token = _split_tok(NULL, " ");
 	}
 	if (replaced)
 		return (result);

@@ -46,7 +46,7 @@ char *search_path(char **filename)
 	}
 	path = remove_prefix(path, prefix);
 	path_copy = _strdup(path);
-	dir = _strtok(path_copy, ":");
+	dir = _split_tok(path_copy, ":");
 
 	if (strstr(filename[0], "/") != NULL)
 		return (filename[0]);
@@ -70,7 +70,7 @@ char *search_path(char **filename)
 			}
 		}
 		closedir(dp);
-		dir = _strtok(NULL, ":");
+		dir = _split_tok(NULL, ":");
 	}
 	return (NULL);
 }

@@ -25,7 +25,7 @@ char **split_line(char *line)
 		perror("dash:Error");
 		exit(EXIT_FAILURE);
 	}
-	token = _strtok(line, TOK_DELIM);
+	token = _split_tok(line, TOK_DELIM);
 	while (token != NULL)
 	{
 		tokens[position] = token;
@@ -40,7 +40,7 @@ char **split_line(char *line)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = _strtok(NULL, TOK_DELIM);
+		token = _split_tok(NULL, TOK_DELIM);
 	}
 	tokens[position] = NULL;
 
@@ -70,12 +70,12 @@ int _split(char *buffer)
 
 	if (array == NULL)
 		return (-1);
-	tok = _strtok(buf_copy, ";");
+	tok = _split_tok(buf_copy, ";");
 
 	while (tok != NULL)
 	{
 		array[i] = tok;
-		tok = _strtok(NULL, ";");
+		tok = _split_tok(NULL, ";");
 		i++;
 	}
 	array[i] = NULL;

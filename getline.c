@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * _getline - reads a line from stdin
+ * fetch_input - reads a line from stdin
  * @lineptr: pointer to an array containing line read
  * @n: number of bytes read from stream
  * @stream: the stream where the line is read from
  * Return: the number of characters read, -1 (fail)
  */
 
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
+ssize_t fetch_input(char **lineptr, size_t *n, FILE *stream)
 {
-	char *buf = NULL;
-	size_t bufsize = 0;
+	static char *buf = NULL;
+	static size_t bufsize = 0;
 	size_t pos = 0;
 	int c;
 

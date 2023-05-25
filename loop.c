@@ -51,7 +51,7 @@ void loop(void)
 
 	do {
 		write(0, "~$ ", 3);
-		n = _getline(&buffer, &size, stdin);
+		n = fetch_input(&buffer, &size, stdin);
 		if (n == -1)
 			break;
 

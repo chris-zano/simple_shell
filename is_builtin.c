@@ -5,6 +5,8 @@
  *
  * @command: the input command
  *
+ * @args: tokenised array of arguments
+ *
  * @builtin_args: an array of possible builtin commands
  *
  * Description: it checks if command is a builtin command,

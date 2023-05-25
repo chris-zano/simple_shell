@@ -9,7 +9,7 @@
 char **split_line(char *line)
 {
 	int buffsize = TK_BUFF_SIZE;
-	int position = 0, i = 0, j = 0;
+	int position = 0, i = 0;
 	char **tokens = malloc(buffsize * sizeof(char *));
 	char *token;
 
@@ -47,6 +47,14 @@ char **split_line(char *line)
 	return (tokens);
 }
 
+/**
+ * _split - splits a line separated by command separator ;
+ *
+ * @buffer: argument container commands split by ;
+ *
+ * Return: 0, Always
+ */
+
 int _split(char *buffer)
 {
 	char *buf_copy = _strdup(buffer);
@@ -76,7 +84,6 @@ int _split(char *buffer)
 	{
 		args = split_line(array[j]);
 		search_execute(args, builtin_args);
-		// free(args);
 		j++;
 	}
 	return (0);

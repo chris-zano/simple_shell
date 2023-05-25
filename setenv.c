@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * dash_setenv - sets the environment variables
+ * @args: arguments array
+ * Return: 0, always
+ */
+
 int dash_setenv(char **args)
 {
 	char *env = NULL;
@@ -44,11 +50,18 @@ int dash_setenv(char **args)
 	return (0);
 }
 
+/**
+ * dash_unsetenv - unsets the environment variables
+ * @args: arguments array
+ * Return: 0, always
+ */
+
 int dash_unsetenv(char **args)
 {
 	char *var, **env_copy;
 	size_t count = 0;
 	int i, j;
+
 	i = j = 0;
 
 	if (!args[1])

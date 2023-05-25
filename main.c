@@ -1,7 +1,8 @@
 #include "shell.h"
 /**
  * main - entry point of the program.
- *
+ * @argc: argument count
+ * @argv: argument vector
  * Return: 0 Always.
  */
 
@@ -11,6 +12,7 @@ int main(int argc, char *argv[])
 	char command[1024], **args;
 	char *builtin_args[] = {"exit", "setenv", "unsetenv", "cd", "alias", NULL};
 	int retcal;
+
 	if (argc != 2)
 		loop();
 	if (argc == 2)
@@ -19,7 +21,7 @@ int main(int argc, char *argv[])
 		if (file == NULL)
 		{
 			printf("Error opening file: %s\n", argv[1]);
-			return 1;
+			return (1);
 		}
 		while (fgets(command, sizeof(command), file) != NULL)
 		{

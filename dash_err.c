@@ -6,10 +6,11 @@
  *
  * Return: The error string.
  */
+
 char *dash_errorenv(char **args)
 {
-	char *error, *hist_str;
-	int len;
+	char *error, *hist_str, *name = "";
+	int len, hist = 0;
 
 	hist_str = dash_toalpha(hist);
 	if (!hist_str)
@@ -43,7 +44,7 @@ char *dash_errorenv(char **args)
  */
 char *alias_error(char **args)
 {
-	char *error;
+	char *error, *name = "";
 	int len;
 
 	len = _strlen(name) + _strlen(args[0]) + 13;
@@ -66,8 +67,8 @@ char *alias_error(char **args)
  */
 char *dash_errortoexit(char **args)
 {
-	char *error, *hist_str;
-	int len;
+	char *error, *hist_str, *name = "";
+	int len, hist = 0;
 
 	hist_str = dash_toalpha(hist);
 	if (!hist_str)
@@ -100,8 +101,8 @@ char *dash_errortoexit(char **args)
  */
 char *error_2_cd(char **args)
 {
-	char *error, *hist_str;
-	int len;
+	char *error, *hist_str, *name = "";
+	int len, hist = 0;
 
 	hist_str = dash_toalpha(hist);
 	if (!hist_str)
@@ -139,8 +140,8 @@ char *error_2_cd(char **args)
  */
 char *error_2_syntax(char **args)
 {
-	char *error, *hist_str;
-	int len;
+	char *error, *hist_str, *name = "";
+	int len, hist = 0;
 
 	hist_str = dash_toalpha(hist);
 	if (!hist_str)

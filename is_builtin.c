@@ -104,25 +104,23 @@ int dash_cd(char **args, char __attribute__((__unused__)) **front)
 
 	if (!dir)
 	{
-		dir = create_path(_getenv("HOME"));
+		dir = create_path(dash_getenv("HOME"));
 
 		if (!dir)
 		{
 			perror("./hsh: Error");
-			return (NULL);
+			return (-1);
 		}
 	}
 	if (_strcmp(dir, "-") == 0)
 	{
-		dir = create_path(_getenv("OLDPWD"));
+		dir = create_path(dash_getenv("OLDPWD"));
 
 		if (!dir)
 		{
 			perror("./hsh: Error");
-			return (NULL);
+			return (-1);
 		}
 	}
-	return (dir);
-	printf("%s\n", dir);
 	return (0);
 }

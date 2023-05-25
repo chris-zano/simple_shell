@@ -10,8 +10,8 @@
 
 int cant_open(char *file_path)
 {
-	char *error, *hist_str;
-	int len;
+	char *error, *hist_str, *name = "";
+	int len, hist = 0;
 
 	hist_str = dash_toalpha(hist);
 	if (!hist_str)
@@ -55,7 +55,6 @@ int proc_file_commands(char *file_path, int *exe_ret)
 	char *line, buffer[120];
 	int rec;
 
-	hist = 0;
 	file = open(file_path, O_RDONLY);
 	if (file == -1)
 		return (127);

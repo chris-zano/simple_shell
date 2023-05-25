@@ -22,7 +22,6 @@ char *_splitargs(char *line, int *exe_ret)
 		return (NULL);
 	if (read == 1)
 	{
-		hist++;
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, prompt, 2);
 		return (_splitargs(line, exe_ret));
@@ -111,9 +110,6 @@ int _execargs(char **args, char **front, int *exe_ret)
 		*exe_ret = dash_execute(args, front);
 		ret = *exe_ret;
 	}
-
-	hist++;
-
 	for (i = 0; args[i]; i++)
 		free(args[i]);
 

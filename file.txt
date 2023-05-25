@@ -1,0 +1,10 @@
+/bin/ls
+ls
+echo
+uname
+whoami
+env
+pwd
+ls /var ; ls /tmp
+ls /var
+ls /var || ls tmp

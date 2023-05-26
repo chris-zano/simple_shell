@@ -32,12 +32,11 @@ int main(int argc, char **argv)
 				write_errc(CLEAR_BUFFER);
 				exit(EXIT_ENO_ENT);
 			}
-			}
 			if(errno == EACCES)
 				exit(EXIT_E_ACCES);
 			return (EXIT_FAILURE);
 		}
-		data->readfdes = fd;
+		data->readfdes = o;
 	}
 	loadenviron_list(data);
 	dash_loop(data, argv);

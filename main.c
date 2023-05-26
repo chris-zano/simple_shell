@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 				write_errc(CLEAR_BUFFER);
 				exit(EXIT_ENO_ENT);
 			}
-			if(errno == EACCES)
+			if (errno == EACCES)
 				exit(EXIT_E_ACCES);
 			return (EXIT_FAILURE);
 		}

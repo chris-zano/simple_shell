@@ -2,7 +2,9 @@
 
 /**
  * get_environ - returns copy of our environ
+ *
  * @data: Structure def.
+ *
  * Return: Always 0
  */
 char **get_environ(unistruct_t *data)

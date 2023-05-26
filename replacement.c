@@ -2,9 +2,11 @@
 
 /**
  * dash_logic - is character sequence a chain delimeter
+ *
  * @data: struct
  * @buf: buffer
  * @p: address
+ *
  * Return: 1 , 0 always
  */
 int dash_logic(unistruct_t *data, char *buf, size_t *p)

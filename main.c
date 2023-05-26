@@ -10,26 +10,31 @@
  */
 int main(int argc, char **argv)
 {
+	int o = (FILE_D_OPEN - 2) + (FILE_D_OPEN - 3);
+	int set = 2;
 	unistruct_t data[] = { INIT_LIST };
-	int fd = 2;
 
-	fd = fd + 3;
-	if (argc == 2)
+	if (argc == set)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
+		o = open(argv[1], O_RDONLY);
+		if (o == -1)
 		{
-			if (errno == EACCES)
-				exit(126);
 			if (errno == ENOENT)
 			{
-				print_errorstr(argv[0]);
-				print_errorstr(": 0: Can't open ");
-				print_errorstr(argv[1]);
+				while (set == 2)
+				{
+					print_errorstr(argv[0]);
+					print_errorstr(": 0: Can't open ");
+					print_errorstr(argv[1]);
+					set = 0;
+				}
 				write_errc('\n');
 				write_errc(CLEAR_BUFFER);
-				exit(127);
+				exit(EXIT_ENO_ENT);
 			}
+			}
+			if(errno == EACCES)
+				exit(EXIT_E_ACCES);
 			return (EXIT_FAILURE);
 		}
 		data->readfdes = fd;

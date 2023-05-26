@@ -14,6 +14,9 @@
 
 #define WRITE_BUF_SIZE 1024
 #define READ_BUF_SIZE 1024
+#define FILE_D_OPEN 5
+#define EXIT_E_ACCES 126
+#define EXIT_ENO_ENT 127
 #define CLEAR_BUFFER -1
 #define RESET_CHAR_LOWER	1
 #define RESET_DEF	0

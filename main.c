@@ -34,7 +34,6 @@ int main(int argc, char **argv)
 		data->readfdes = fd;
 	}
 	loadenviron_list(data);
-	fetch_hist(data);
 	dash_loop(data, argv);
 	return (EXIT_SUCCESS);
 }

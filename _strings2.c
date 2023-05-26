@@ -2,10 +2,12 @@
 
 /**
  **_strncat - concatenates two strings from args
- *@dest: the first string
- *@src: the second string
- *@n: bytes
- *Return: the concatenated string
+ *
+ * @dest: the first string
+ * @src: the second string
+ * @n: bytes
+ *
+ * Return: the concatenated string
  */
 char *_strncat(char *dest, char *src, int n)
 {

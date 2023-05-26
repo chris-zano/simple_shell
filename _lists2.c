@@ -2,6 +2,7 @@
 
 /**
  * _strdup - duplicates a string
+ *
  * @str: the string to duplicate
  *
  * Return: pointer to new cting

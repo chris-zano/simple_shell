@@ -170,4 +170,4 @@ size_t list_len(const dash_t *);
 char **dash_to_strings(dash_t *);
 size_t print_list(const dash_t *);
 
-#endif /* SHELL_H*/
+#endif /* SHELL_H */

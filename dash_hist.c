@@ -2,6 +2,7 @@
 
 /**
  * openhist_file - gets the history file
+ *
  * @data: parameter struct
  *
  * Return: allocated string containg history file

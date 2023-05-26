@@ -2,11 +2,13 @@
 
 /**
  * cont_add - continue chaining based on last status
+ *
  * @data: struct
  * @buf: buffer
  * @p: addressposition in buf
  * @i: start
  * @len: length
+ *
  * Return: Void
  */
 void cont_add(unistruct_t *data, char *buf, size_t *p, size_t i, size_t len)

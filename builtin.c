@@ -2,6 +2,7 @@
 
 /**
  * search_path - finds this cmd in the PATH string
+ *
  * @data: the data struct
  * @pathv: the PATH string
  * @cmd: the cmd to find

@@ -2,6 +2,7 @@
 
 /**
  * reset_unistruct - initializes unistruct_t struct
+ *
  * @data: struct address
  */
 void reset_unistruct(unistruct_t *data)
